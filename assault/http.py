@@ -19,7 +19,7 @@ async def worker(name, queue, results):
     loop = asyncio.get_event_loop()
     while True:
         url = await queue.get()
-        if os.getenv("PYTHONDEBUG"):
+        if os.getenv("DEBUG"):
             print(f"{name} - Fetching {url}")
         future_result = loop.run_in_executor(None, fetch, url)
         result = await future_result
